@@ -1,0 +1,3 @@
+ssh:
+  root_public_key: ~
+  root_private_key: ~

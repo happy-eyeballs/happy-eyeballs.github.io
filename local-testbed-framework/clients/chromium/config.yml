@@ -1,0 +1,4 @@
+versions:
+  environmentVariableName: CHROMIUM_VERSION
+  values:
+    - 130.0

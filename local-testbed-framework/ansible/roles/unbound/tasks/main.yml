@@ -1,0 +1,32 @@
+- name: Install unbound
+  ansible.builtin.apt:
+    name: unbound
+    state: present
+
+- name: Copy unbound config
+  ansible.builtin.template:
+    src: etc/unbound/unbound.conf.d/custom.conf
+    dest: /etc/unbound/unbound.conf.d/custom.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart unbound
+
+- name: Stop and disable systemd-resolved
+  ansible.builtin.systemd:
+    name: systemd-resolved.service
+    state: stopped
+
+- name: Remove current resolv.conf
+  ansible.builtin.file:
+    path: /etc/resolv.conf
+    attributes: -i
+
+- name: Copy /etc/resolv.conf
+  ansible.builtin.template:
+    src: etc/resolv.conf
+    dest: /etc/resolv.conf
+    attributes: +i
+    owner: root
+    group: root
+    mode: '0644'

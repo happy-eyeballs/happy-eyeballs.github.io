@@ -1,0 +1,31 @@
+- name: Add docker apt key
+  apt_key:
+    url: "https://download.docker.com/linux/{{ os_name }}/gpg"
+    state: present
+
+- name: Add docker apt repository
+  apt_repository:
+    repo: "deb https://download.docker.com/linux/{{ os_name }} {{ os_version_name }} stable"
+    state: present
+
+- name: Install docker
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+    - docker-buildx-plugin
+    - docker-compose-plugin
+
+- name: Create docker systemd override directory
+  file:
+    path: /etc/systemd/system/docker.service.d
+    state: directory
+
+- name: Copy docker systemd override file for ramdisk environment variable
+  template:
+    src: etc/systemd/system/docker.service.d/ramdisk.conf
+    dest: /etc/systemd/system/docker.service.d/ramdisk.conf
+  notify: restart docker

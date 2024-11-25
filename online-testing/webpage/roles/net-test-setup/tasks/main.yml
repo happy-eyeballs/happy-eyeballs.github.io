@@ -1,0 +1,19 @@
+---
+
+- name: delete IP addresses
+  ansible.builtin.import_tasks: drop-addrs.yml
+  tags:
+    - dropaddrs
+    - never
+
+- name: add IP addresses
+  ansible.builtin.import_tasks: add-addrs.yml
+  tags:
+    - always
+    - addaddrs
+
+- name: setup delays
+  ansible.builtin.import_tasks: setup-delays.yml
+  tags:
+    - always
+    - delayconfig

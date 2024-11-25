@@ -1,0 +1,191 @@
+---
+
+- name: Create cert for delay domains
+  tags:
+    - createcerts
+  block:
+    - name: Check if certificate already exists.
+      ansible.builtin.stat:
+        path: /etc/letsencrypt/live/{{  certbot_domains | first | replace('*.', '') }}/cert.pem
+      register: wildcard_cert
+
+    - name: Command for Cert creation
+      ansible.builtin.debug:
+        msg: "Please exectue the following certbot command to create the needed wildcard certificate: {{ certbot_command }}"
+      when: not wildcard_cert.stat.exists
+
+    - name: Wildcard cert present?
+      ansible.builtin.pause:
+        prompt: "Does /etc/letsencrypt/live/delay-0.v1.example.com contain a valid certificate?"
+      when: not wildcard_cert.stat.exists
+
+- name: Create cert for v2 wildcard domain
+  tags:
+    - createcerts
+  block:
+    - name: Check if certificate already exists.
+      ansible.builtin.stat:
+        path: /etc/letsencrypt/live/{{  certbot_v2_domain | replace('*.', '') }}/cert.pem
+      register: v2wildcard_cert
+
+    - name: Command for Cert creation
+      ansible.builtin.debug:
+        msg: "Please exectue the following certbot command to create the needed wildcard certificate: {{ certbot_command_v2 }}"
+      when: not v2wildcard_cert.stat.exists
+
+    - name: Wildcard cert present?
+      ansible.builtin.pause:
+        prompt: "Does /etc/letsencrypt/live/delay-0.v1.example.com contain a valid certificate?"
+      when: not v2wildcard_cert.stat.exists
+
+- name: Create cert for version only domains
+  tags:
+    - createcerts
+  block:
+    - name: Check if certificate already exists.
+      ansible.builtin.stat:
+        path: /etc/letsencrypt/live/{{ certbot_v6only_domain }}/cert.pem
+      register: only_cert
+
+    - name: Command for Cert creation
+      ansible.builtin.command:
+        cmd: "{{ certbot_command_version_only }}"
+      changed_when: true
+      when: not only_cert.stat.exists
+
+- name: Setup nginx
+  tags:
+    - nginxsetup
+  block:
+    - name: Copy Tester site source directory
+      ansible.builtin.copy:
+        src: site-src/
+        dest: /data/happy-eyeballs-test/www-root/
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Ensure base directory is present
+      ansible.builtin.file:
+        path: "{{ server_base_path }}"
+        owner: "{{ upload_user }}"
+        group: "{{ upload_group }}"
+        mode: '0755'
+        state: 'directory'
+
+    - name: Create venv if needed
+      block:
+
+        - name: Check if the file exists
+          ansible.builtin.stat:
+            path: "{{ server_venv_path }}"
+          register: file_stat
+
+        # - name: Debug file non-existence
+        #   ansible.builtin.debug:
+        #     msg: "The file does not exist."
+        #   when: not file_stat.stat.exists
+
+        - name: Create virtual environment
+          when: not file_stat.stat.exists
+          block:
+            - name: Create Venv
+              ansible.builtin.command: python3 -m venv {{ server_venv_path }}
+              changed_when: true
+
+            - name: Copy requirements
+              ansible.builtin.copy:
+                src: requirements.txt
+                dest: "{{ server_base_path }}"
+                owner: "{{ upload_user }}"
+                group: "{{ upload_group }}"
+                mode: '0644'
+
+            - name: Install requirements
+              ansible.builtin.pip:
+                requirements: "{{ server_base_path }}/requirements.txt"
+                virtualenv: "{{ server_venv_path }}"
+
+            - name: Install uwsgi
+              ansible.builtin.pip:
+                name:
+                  - uwsgi
+                virtualenv: "{{ server_venv_path }}"
+
+    - name: Copy Upload server python file
+      ansible.builtin.template:
+        src: results-upload.py
+        dest: "{{ server_base_path }}/results-upload.py"
+        owner: "{{ upload_user }}"
+        group: "{{ upload_group }}"
+        mode: '0644'
+      register: upload_server
+
+    - name: Ensure results directory is present
+      ansible.builtin.file:
+        path: "{{ upload_dir }}"
+        owner: "{{ upload_user }}"
+        group: "{{ upload_group }}"
+        mode: '0755'
+        state: 'directory'
+
+    - name: Copy Upload server systemd service file
+      ansible.builtin.template:
+        src: he-upload-server.service.j2
+        dest: /etc/systemd/system/he-upload-server.service
+        owner: root
+        group: root
+        mode: '0644'
+      register: upload_service
+
+    # - name: Reload systemd and start Upload server
+    #   ansible.builtin.systemd_service:
+    #     name: he-upload-server.service
+    #     daemon_reload: true
+    #     state: restarted
+    #   when: upload_service.changed or upload_server.changed
+
+    - name: Copy Tester nginx config file
+      ansible.builtin.copy:
+        src: happy-eyeballs-test.site
+        dest: /etc/nginx/sites-enabled
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Copy version only nginx config file
+      ansible.builtin.template:
+        src: happy-eyeballs-version-only.site.j2
+        dest: /etc/nginx/sites-enabled/happy-eyeballs-version-only.site
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Create delays.csv file
+      ansible.builtin.template:
+        src: delays.csv.j2
+        dest: /data/happy-eyeballs-test/www-root/delays.csv
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Copy Delay nginx config file
+      ansible.builtin.template:
+        src: happy-eyeballs-delay.site.j2
+        dest: /etc/nginx/sites-enabled/happy-eyeballs-delay.site
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Copy Delay v2 nginx config file
+      ansible.builtin.template:
+        src: happy-eyeballs-v2delay.site.j2
+        dest: /etc/nginx/sites-enabled/happy-eyeballs-v2delay.site
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Reload nginx service
+      ansible.builtin.systemd_service:
+        name: nginx.service
+        state: 'reloaded'

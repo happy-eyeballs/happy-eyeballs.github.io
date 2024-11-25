@@ -1,0 +1,29 @@
+stages:
+  - restartClient
+  - netemBefore
+  - separatorPacket
+  - request
+  - netemAfter
+
+targets:
+  - tag: _client
+    scripts:
+      - stage: request
+        script: request_wrapper.sh
+
+      - stage: restartClient
+        script: restart_wrapper.sh
+
+  - tag: tcpdump
+    scripts:
+      - stage: separatorPacket
+        script: separator_packet.sh
+
+repeat:
+  environmentVariableName: DNS_DELAY
+  from: 0
+  to: 1000
+  step: 50
+
+evaluation:
+  script: evaluate.sh

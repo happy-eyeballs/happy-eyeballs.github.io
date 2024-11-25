@@ -1,0 +1,47 @@
+targets:
+  # Server
+  - name: Example Server                          # Human-readable display name
+    ssh:
+      hostname: 'ssh.example.com'
+      user: server
+      port: 12345
+      privkey: '/home/runner/.ssh/id_ed25519'
+      knownhosts: '/home/runner/.ssh/known_hosts'
+    environmentPrefix: LC_                        # MANDATORY, prefix allowed by SSH server
+    environment:
+      - DOCKER_COMPOSE_CMD=sudo -E docker compose # Make sure env variables are forwarded, e.g., use -E with sudo
+      - INTERFACE=eth0                            # Interface to listen on
+    tags:                                         # Tag host to execute the correct scripts on it
+      - server
+
+  # DNS Server
+  - name: Example DNS Server
+    ssh:
+      hostname: 'ns.example.com'
+      user: dns
+      port: 6789
+      privkey: '/home/runner/.ssh/id_ed25519'
+      knownhosts: '/home/runner/.ssh/known_hosts'
+    environmentPrefix: LC_
+    environment:
+      - DOCKER_COMPOSE_CMD=docker-compose # Example for older Docker Compose versions
+      - INTERFACE=en0                     # Interface to listen on
+      - BASE_DOMAIN=test.example.com      # Domain for the test run that the DNS server is authoritive for
+      - DNS_MNAME=master.example.com      # Needed for the SOA record
+      - DNS_RNAME=hostmaster.example.com  # Needed for the SOA record
+      - DNS_A=127.0.0.1                   # IPv4 address (single!) of the Server
+      - DNS_AAAA=::1                      # IPv6 address (single!) of the Server
+    tags:
+      - dns
+
+  # Client
+  - name: Example Client
+    environmentPrefix: 'LC_'
+    environment:
+      - BASE_DOMAIN=test.example.com  # Domain for the test run that the DNS server is authoritive for
+      - PR_PROFILE=icloud-pr          # Network location profile with PR ENABLED (Only for TLS.5-6)
+      - NOPR_PROFILE=no-icloud-pr     # Network location profile with PR DISABLED (Only for TLS.5-6)
+      - IPERF3_COMMAND=iperf3-darwin  # Command to invoke iperf3. Defaults to `iperf3` (Only for NET.*)
+      - SOURCE_MAC=00:00:00:00:00:00  # MAC address of sending interface (Only for RC.3)
+    tags:
+      - client

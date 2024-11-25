@@ -1,0 +1,9 @@
+#- name: Install selenium
+#  pip:
+#    name: selenium
+#    state: present
+
+- name: Install selenium
+  apt:
+    name: python3-selenium
+    state: present

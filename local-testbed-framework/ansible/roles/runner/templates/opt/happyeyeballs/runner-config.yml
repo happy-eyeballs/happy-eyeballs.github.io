@@ -1,0 +1,32 @@
+targets:
+  - name: Client
+    tags:
+      - _client
+      - _evaluation
+      - tcpdump
+    environmentPrefix: LC_ # unnecessary if runner is on same host but makes it easier to swap modules between hosts
+    environment:
+      - BASE_DOMAIN={{ dns.base_domain }}
+      - USE_DOCKER_TCPDUMP=true
+      - TCPDUMP_INTERFACE={{ client_interface }}
+      - TCPDUMP_SEPARATOR_PACKET_DESTINATION_ADDRESS={{ server.ipv6[0] }} # needs to be routed through the TCPDUMP_INTERFACE, as only this interface is captured (and 'any' doesn't work due to device timestamps)
+      - DNS_A={{ server.ipv4 | join(' ') }}
+      - DNS_AAAA={{ server.ipv6 | join(' ') }}
+
+  - name: Server
+    tags:
+      - nginx
+      - netem
+      - dns
+    ssh:
+      hostname: "{{ server_node }}.{{ local_domain }}"
+      user: root
+      port: 22
+      privkey: /root/.ssh/id_ed25519
+    environmentPrefix: LC_
+    environment:
+      - NETEM_INTERFACE={{ server_interface }}
+      - BASE_DOMAIN={{ dns.base_domain }}
+      - DNS_BIND_ADDRESS={{ dns.bind_address }}
+      - DNS_A={{ server.ipv4 | join(' ') }}
+      - DNS_AAAA={{ server.ipv6 | join(' ') }}

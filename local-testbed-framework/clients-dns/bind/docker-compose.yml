@@ -1,0 +1,6 @@
+services:
+  bind:
+    image: internetsystemsconsortium/bind9:$LC_BIND_VERSION
+    network_mode: "host"
+    volumes:
+      - ./bind-etc/named.conf:/etc/bind/named.conf

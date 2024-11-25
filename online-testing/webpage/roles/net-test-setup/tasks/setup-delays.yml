@@ -1,0 +1,44 @@
+---
+# - name: Create fw masking rules
+#   ansible.builtin.shell:
+#     cmd: "ip6tables -t mangle -A OUTPUT -d {{ item.address }}/128 -j MARK --set-mark {{ item.delay }}"
+#   when: item.delay > 0
+#   with_items: "{{ headdresses }}"
+
+- name: add root handle
+  ansible.builtin.shell:
+    cmd: "tc qdisc add dev {{ heinterface }} root handle 1: htb"
+
+- name: add delays classes
+  ansible.builtin.shell:
+    cmd: "tc class add dev {{ heinterface }} parent 1: classid 1:{{ item.classid }} htb rate 1gbit"
+  when: item.delay > 0
+  with_items: "{{ headdresses }}"
+
+- name: add delays qdiscs
+  ansible.builtin.shell:
+    cmd: "tc qdisc add dev {{ heinterface }} parent 1:{{ item.classid }} netem delay {{ item.delay }}ms"
+  when: item.delay > 0
+  with_items: "{{ headdresses }}"
+
+- name: map addresses to TCP delay qdiscs
+  ansible.builtin.shell:
+    cmd: "tc filter add dev {{ heinterface }} protocol ipv6 parent 1: prio 1 u32 match ip6 src {{ item.address }}/128 match ip6 protocol 6 0xff flowid  1:{{ item.classid }}"
+  when: item.delay > 0
+  with_items: "{{ headdresses }}"
+
+- name: map addresses to UDP delay qdiscs
+  ansible.builtin.shell:
+    cmd: "tc filter add dev {{ heinterface }} protocol ipv6 parent 1: prio 1 u32 match ip6 src {{ item.address }}/128 match ip6 protocol 17 0xff flowid  1:{{ item.classid }}"
+  when: item.delay > 0
+  with_items: "{{ headdresses }}"
+
+- name: map addresses to ICMPv6 delay qdiscs
+  ansible.builtin.shell:
+    cmd: "tc filter add dev {{ heinterface }} protocol ipv6 parent 1: prio 1 u32 match ip6 src {{ item.address }}/128 match ip6 protocol 58 0xff flowid  1:{{ item.classid }}"
+  when: item.delay > 0
+  with_items: "{{ headdresses }}"
+
+# tc qdisc add dev eth0 root handle 1: prio
+# tc qdisc add dev eth0 parent 1:1 handle 10: netem delay 100ms
+# tc filter add dev eth0 protocol ipv6 parent 1: prio 1 handle 1 fw flowid 1:1

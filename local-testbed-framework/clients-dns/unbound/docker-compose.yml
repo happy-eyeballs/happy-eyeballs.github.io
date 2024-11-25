@@ -1,0 +1,6 @@
+services:
+  unbound:
+    image: mvance/unbound:$LC_UNBOUND_VERSION
+    network_mode: "host"
+    volumes:
+      - ./unbound-etc:/opt/unbound/etc/unbound

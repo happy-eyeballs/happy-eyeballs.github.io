@@ -1,0 +1,27 @@
+stages:
+#  - restartClient
+  - separatorPacket
+  - request
+
+targets:
+  - tag: _client
+    scripts:
+      - stage: request
+        script: request_wrapper.sh
+
+#      - stage: restartClient
+#        script: restart_wrapper.sh
+
+  - tag: tcpdump
+    scripts:
+      - stage: separatorPacket
+        script: separator_packet.sh
+
+repeat:
+  environmentVariableName: AAAA_DELAY
+  from: 0
+  to: 1000
+  step: 10
+
+evaluation:
+  script: evaluate.sh

@@ -1,0 +1,10 @@
+---
+
+- name: drop addresses from interface
+  ansible.builtin.shell:
+    cmd: "ip a del {{ item }} dev {{ heinterface }}"
+  with_items:
+    - "{{ headdresses | map(attribute='address') | list }}"
+    - "{{ otheraddrs.ipv4 }}"
+    - "{{ otheraddrs.ipv6 }}"
+  failed_when: false

@@ -1,0 +1,9 @@
+services:
+  nginx:
+    image: nginx:1.25.4
+    restart: unless-stopped
+    network_mode: 'host'
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "./templates:/etc/nginx/templates:ro"
+#      - "./nginx:/var/log/nginx"

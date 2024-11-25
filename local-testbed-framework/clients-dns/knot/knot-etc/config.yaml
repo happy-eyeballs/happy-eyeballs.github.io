@@ -1,0 +1,19 @@
+network:
+  listen:
+    - port: 15353
+      interface: '127.0.0.1'
+
+forward:
+  - subtree: internal.example.com.
+    servers: [ 10.0.2.1 ]
+    options:
+      authoritative: true
+      dnssec: false
+
+options:
+  priming: false
+
+lua:
+  script: |
+    policy.add(policy.all(policy.FLAGS({'NO_MINIMIZE'})))
+    trust_anchors.remove('.')

@@ -1,0 +1,16 @@
+[Unit]
+Description=Happy Eyeballs Tester DNS Server
+ConditionFileNotEmpty={{ server_base_path }}/results-upload.py
+ConditionFileIsExecutable={{ server_venv_path }}/bin/python
+Wants=network-online.target
+After=network-online.target
+OnFailure=status-email@%n.service
+
+[Service]
+Type=simple
+Environment="PYTHONENV={{ server_base_path }}/venv"
+User={{ upload_user }}
+ExecStart={{ server_venv_path }}/bin/python {{ server_base_path }}/results-upload.py -o {{ upload_dir }} -d {{ dns_upload_dir }} --v2-output-directory {{ v2_oupload_dir }}
+ExecStopPost=/usr/local/bin/systemd-email %n --no-send-on-success
+Restart=on-failure
+RestartSec=10

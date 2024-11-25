@@ -1,0 +1,5 @@
+services:
+  chrome:
+    image: selenium/standalone-edge:$LC_EDGE_VERSION
+    shm_size: 2g
+    network_mode: host

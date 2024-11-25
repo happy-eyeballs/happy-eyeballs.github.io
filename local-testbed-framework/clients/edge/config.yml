@@ -1,0 +1,8 @@
+versions:
+  environmentVariableName: EDGE_VERSION
+  values:
+    - 130.0
+    - 120.0
+    - 108.0
+    - 96.0
+    - 90.0

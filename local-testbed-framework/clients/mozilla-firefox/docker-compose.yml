@@ -1,0 +1,5 @@
+services:
+  chrome:
+    image: selenium/standalone-firefox:$LC_FIREFOX_VERSION
+    shm_size: 2g
+    network_mode: host

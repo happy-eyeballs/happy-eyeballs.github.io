@@ -1,0 +1,42 @@
+server {
+    root /data/happy-eyeballs-test/www-root;
+
+    server_name host.example.com; # managed by Certbot
+
+    location /results {
+        proxy_pass http://127.0.0.1:40000;  # Pass requests to the backend application
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    location /v2results {
+        proxy_pass http://127.0.0.1:40000;  # Pass requests to the backend application
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    index main.html;
+
+    listen [::]:8443 ssl ipv6only=on; # managed by Certbot
+    listen 8443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/host.example.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/host.example.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+
+server {
+
+    if ($host = host.example.com) {
+        return 301 https://$host:8443$request_uri;
+    } # managed by Certbot
+
+    listen 8080 ;
+    listen [::]:8080 ;
+    server_name host.example.com;
+    return 404; # managed by Certbot
+}

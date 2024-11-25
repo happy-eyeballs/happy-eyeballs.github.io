@@ -1,0 +1,20 @@
+- name: Set facts
+  set_fact:
+    interface:
+      name: "{{ (inventory_hostname == 'client_node') | ternary(client_interface, server_interface) }}"
+      ipv4: "{{ (inventory_hostname == 'client_node') | ternary(client.ipv4, server.ipv4) }}"
+      ipv6: "{{ (inventory_hostname == 'client_node') | ternary(client.ipv6, server.ipv6) }}"
+
+- name: Add IPv4 address
+  command: "ip address add dev {{ interface.name }} {{ item }}/16"
+  ignore_errors: true
+  loop: "{{ interface.ipv4 }}"
+
+- name: Add IPv6 address
+  command: "ip -6 address add dev {{ interface.name }} {{ item }}/64"
+  ignore_errors: true
+  loop: "{{ interface.ipv6 }}"
+
+- name: Bring interface up
+  command: "ip link set dev {{ interface.name }} up"
+  ignore_errors: true

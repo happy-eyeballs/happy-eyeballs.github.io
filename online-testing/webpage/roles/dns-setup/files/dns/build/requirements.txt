@@ -1,0 +1,2 @@
+dnslib >= 0.9.23
+requests >= 2.32.0

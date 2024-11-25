@@ -1,0 +1,10 @@
+services:
+  tcpdump:
+    image: nicolaka/netshoot:latest
+#    command: 'tcpdump -U -i $LC_TCPDUMP_INTERFACE -j adapter_unsynced -w /data/capture.pcap "(port 80 or port 53) or (udp and port 44444 and dst $LC_TCPDUMP_SEPARATOR_PACKET_DESTINATION_ADDRESS)"'
+    command: 'tcpdump -U -i $LC_TCPDUMP_INTERFACE -w /data/capture.pcap "(port 80 or port 53) or (udp and port 44444 and dst $LC_TCPDUMP_SEPARATOR_PACKET_DESTINATION_ADDRESS)"'
+    network_mode: 'host'
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - "./pcaps:/data"

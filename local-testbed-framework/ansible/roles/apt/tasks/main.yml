@@ -1,0 +1,17 @@
+- name: Update apt cache
+  apt:
+    update_cache: true
+    state: present
+
+- name: Install required packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - sudo
+    - gettext-base # required for 'envsubst'
+    - python3
+    - python3-pip
+    - tshark
+    - dnsutils
+    - netcat-openbsd

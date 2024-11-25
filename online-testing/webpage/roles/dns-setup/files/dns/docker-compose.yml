@@ -1,0 +1,13 @@
+services:
+  dns:
+    build:
+      context: .
+      dockerfile: build/Dockerfile
+    restart: unless-stopped
+    network_mode: 'host'
+    command: --listen6 --local-ns-ip 192.0.2.190 192.0.2.191 192.0.2.190 2001:db8::d:1 2001:db8::d:2 --v6delay-prefix 2001:db8::4e:0/112 --output-dir /data
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./dns.zone:/app/dns.zone:ro
+      - /data/happy-eyeballs-test/dns-query-data:/data
+#      - ./queries:/data

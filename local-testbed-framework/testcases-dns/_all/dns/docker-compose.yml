@@ -1,0 +1,12 @@
+services:
+  dns:
+    build:
+      dockerfile: build/Dockerfile
+    restart: unless-stopped
+    network_mode: 'host'
+    command: --listen6 --local-ns-ip ${DNS_A} ${DNS_AAAA} --zonefile /app/dns.zone
+
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./dns.zone:/app/dns.zone:ro
+#      - ./queries:/data

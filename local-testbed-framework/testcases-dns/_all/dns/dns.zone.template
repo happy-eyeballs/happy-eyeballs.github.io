@@ -1,0 +1,29 @@
+$TTL 3600
+$ORIGIN $BASE_DOMAIN.
+
+@                 IN  SOA    ns.$BASE_DOMAIN. mail.$BASE_DOMAIN. $DNS_SERIAL 3600 900 604800 180
+@                 IN  NS     ns.$BASE_DOMAIN.
+
+ns                IN  A      $DNS_A
+ns                IN  AAAA      $DNS_AAAA
+
+dns-delay      IN  NS     ns1-id---.$BASE_DOMAIN.
+
+dns-delay-wg    IN NS       ns1-id---.$BASE_DOMAIN.
+
+$TTL 60
+ns1-id-*          IN  A      $DNS_A_ZONE
+ns1-id-*          IN  AAAA      $DNS_AAAA_ZONE
+
+$ORIGIN dns-delay.$BASE_DOMAIN.
+@                 IN  SOA    ns1-id---.$BASE_DOMAIN. mail.$BASE_DOMAIN. $DNS_SERIAL 3600 900 604800 180
+
+id-*            IN A 127.0.10.1
+id-*            IN AAAA fe80::2
+
+
+$ORIGIN dns-delay-wg.$BASE_DOMAIN.
+@                 IN  SOA    ns1-id---.$BASE_DOMAIN. mail.$BASE_DOMAIN. $DNS_SERIAL 3600 900 604800 180
+
+id-*            IN A 127.0.11.1
+id-*            IN AAAA fe80::3

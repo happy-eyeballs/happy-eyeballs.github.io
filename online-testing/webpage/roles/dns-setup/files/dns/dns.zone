@@ -1,0 +1,384 @@
+$TTL 3600
+$ORIGIN v1.example.com.
+
+@                 IN  SOA    ns1.v1.example.com. mail.example.com. 1722513549 3600 900 604800 180
+@                 IN  NS     ns1.example.com.
+@                 IN  NS     ns2.example.com.
+
+ns1                IN  A     192.0.2.190
+ns2                IN  A     192.0.2.191
+ns1                IN  AAAA     2001:db8::d:1
+ns2                IN  AAAA     2001:db8::d:2
+
+ipv6-only          IN  AAAA     2001:db8::4f:0
+ipv4-only          IN  A        192.0.2.189
+
+$TTL 300
+id-*.delay-0          IN  A      192.0.2.160
+id-*.delay-0          IN  AAAA   2001:db8::4e:0
+id-*.delay-50            IN  A      192.0.2.161
+id-*.delay-50            IN  AAAA   2001:db8::4e:50
+id-*.delay-100            IN  A      192.0.2.162
+id-*.delay-100            IN  AAAA   2001:db8::4e:100
+id-*.delay-150            IN  A      192.0.2.163
+id-*.delay-150            IN  AAAA   2001:db8::4e:150
+id-*.delay-200            IN  A      192.0.2.164
+id-*.delay-200            IN  AAAA   2001:db8::4e:200
+id-*.delay-250            IN  A      192.0.2.165
+id-*.delay-250            IN  AAAA   2001:db8::4e:250
+id-*.delay-300            IN  A      192.0.2.166
+id-*.delay-300            IN  AAAA   2001:db8::4e:300
+id-*.delay-400            IN  A      192.0.2.167
+id-*.delay-400            IN  AAAA   2001:db8::4e:400
+id-*.delay-500            IN  A      192.0.2.168
+id-*.delay-500            IN  AAAA   2001:db8::4e:500
+id-*.delay-600            IN  A      192.0.2.169
+id-*.delay-600            IN  AAAA   2001:db8::4e:600
+id-*.delay-750            IN  A      192.0.2.170
+id-*.delay-750            IN  AAAA   2001:db8::4e:750
+id-*.delay-1000            IN  A      192.0.2.171
+id-*.delay-1000            IN  AAAA   2001:db8::4e:1000
+id-*.delay-1250            IN  A      192.0.2.172
+id-*.delay-1250            IN  AAAA   2001:db8::4e:1250
+id-*.delay-1500            IN  A      192.0.2.173
+id-*.delay-1500            IN  AAAA   2001:db8::4e:1500
+id-*.delay-1750            IN  A      192.0.2.174
+id-*.delay-1750            IN  AAAA   2001:db8::4e:1750
+id-*.delay-2000            IN  A      192.0.2.175
+id-*.delay-2000            IN  AAAA   2001:db8::4e:2000
+id-*.delay-3000            IN  A      192.0.2.176
+id-*.delay-3000            IN  AAAA   2001:db8::4e:3000
+id-*.delay-4000            IN  A      192.0.2.177
+id-*.delay-4000            IN  AAAA   2001:db8::4e:4000
+id-*.delay-5000            IN  A      192.0.2.178
+id-*.delay-5000            IN  AAAA   2001:db8::4e:5000
+id-*.delay-10000            IN  A      192.0.2.178
+id-*.delay-10000            IN  AAAA   2001:db8::4e:a000
+id-*.delay-60000            IN  A      192.0.2.178
+id-*.delay-60000            IN  AAAA   2001:db8::4e:6f00
+
+$ORIGIN v1-rdns.example.com.
+@                 IN  SOA    ns1.v1-rdns.example.com. mail.example.com. 1722513549 3600 900 604800 180
+@                 IN  NS     ns1.example.com.
+@                 IN  NS     ns2.example.com.
+
+ns1                IN  A     192.0.2.190
+ns2                IN  A     192.0.2.191
+ns1                IN  AAAA     2001:db8::d:1
+ns2                IN  AAAA     2001:db8::d:2
+
+ipv6-only          IN  AAAA     2001:db8::4f:0
+ipv4-only          IN  A        192.0.2.189
+
+$TTL 300
+ns1-id-*.delay-0          IN  A      192.0.2.160
+ns1-id-*.delay-0          IN  AAAA   2001:db8::4e:0
+ns1-id-*.delay-50            IN  A      192.0.2.161
+ns1-id-*.delay-50            IN  AAAA   2001:db8::4e:50
+ns1-id-*.delay-100            IN  A      192.0.2.162
+ns1-id-*.delay-100            IN  AAAA   2001:db8::4e:100
+ns1-id-*.delay-150            IN  A      192.0.2.163
+ns1-id-*.delay-150            IN  AAAA   2001:db8::4e:150
+ns1-id-*.delay-200            IN  A      192.0.2.164
+ns1-id-*.delay-200            IN  AAAA   2001:db8::4e:200
+ns1-id-*.delay-250            IN  A      192.0.2.165
+ns1-id-*.delay-250            IN  AAAA   2001:db8::4e:250
+ns1-id-*.delay-300            IN  A      192.0.2.166
+ns1-id-*.delay-300            IN  AAAA   2001:db8::4e:300
+ns1-id-*.delay-400            IN  A      192.0.2.167
+ns1-id-*.delay-400            IN  AAAA   2001:db8::4e:400
+ns1-id-*.delay-500            IN  A      192.0.2.168
+ns1-id-*.delay-500            IN  AAAA   2001:db8::4e:500
+ns1-id-*.delay-600            IN  A      192.0.2.169
+ns1-id-*.delay-600            IN  AAAA   2001:db8::4e:600
+ns1-id-*.delay-750            IN  A      192.0.2.170
+ns1-id-*.delay-750            IN  AAAA   2001:db8::4e:750
+ns1-id-*.delay-1000            IN  A      192.0.2.171
+ns1-id-*.delay-1000            IN  AAAA   2001:db8::4e:1000
+ns1-id-*.delay-1250            IN  A      192.0.2.172
+ns1-id-*.delay-1250            IN  AAAA   2001:db8::4e:1250
+ns1-id-*.delay-1500            IN  A      192.0.2.173
+ns1-id-*.delay-1500            IN  AAAA   2001:db8::4e:1500
+ns1-id-*.delay-1750            IN  A      192.0.2.174
+ns1-id-*.delay-1750            IN  AAAA   2001:db8::4e:1750
+ns1-id-*.delay-2000            IN  A      192.0.2.175
+ns1-id-*.delay-2000            IN  AAAA   2001:db8::4e:2000
+ns1-id-*.delay-3000            IN  A      192.0.2.176
+ns1-id-*.delay-3000            IN  AAAA   2001:db8::4e:3000
+ns1-id-*.delay-4000            IN  A      192.0.2.177
+ns1-id-*.delay-4000            IN  AAAA   2001:db8::4e:4000
+ns1-id-*.delay-5000            IN  A      192.0.2.178
+ns1-id-*.delay-5000            IN  AAAA   2001:db8::4e:5000
+
+ns2-id-*.delay-0          IN  A      192.0.2.160
+ns2-id-*.delay-0          IN  AAAA   2001:db8::4e:0
+ns2-id-*.delay-50            IN  A      192.0.2.161
+ns2-id-*.delay-50            IN  AAAA   2001:db8::4e:50
+ns2-id-*.delay-100            IN  A      192.0.2.162
+ns2-id-*.delay-100            IN  AAAA   2001:db8::4e:100
+ns2-id-*.delay-150            IN  A      192.0.2.163
+ns2-id-*.delay-150            IN  AAAA   2001:db8::4e:150
+ns2-id-*.delay-200            IN  A      192.0.2.164
+ns2-id-*.delay-200            IN  AAAA   2001:db8::4e:200
+ns2-id-*.delay-250            IN  A      192.0.2.165
+ns2-id-*.delay-250            IN  AAAA   2001:db8::4e:250
+ns2-id-*.delay-300            IN  A      192.0.2.166
+ns2-id-*.delay-300            IN  AAAA   2001:db8::4e:300
+ns2-id-*.delay-400            IN  A      192.0.2.167
+ns2-id-*.delay-400            IN  AAAA   2001:db8::4e:400
+ns2-id-*.delay-500            IN  A      192.0.2.168
+ns2-id-*.delay-500            IN  AAAA   2001:db8::4e:500
+ns2-id-*.delay-600            IN  A      192.0.2.169
+ns2-id-*.delay-600            IN  AAAA   2001:db8::4e:600
+ns2-id-*.delay-750            IN  A      192.0.2.170
+ns2-id-*.delay-750            IN  AAAA   2001:db8::4e:750
+ns2-id-*.delay-1000            IN  A      192.0.2.171
+ns2-id-*.delay-1000            IN  AAAA   2001:db8::4e:1000
+ns2-id-*.delay-1250            IN  A      192.0.2.172
+ns2-id-*.delay-1250            IN  AAAA   2001:db8::4e:1250
+ns2-id-*.delay-1500            IN  A      192.0.2.173
+ns2-id-*.delay-1500            IN  AAAA   2001:db8::4e:1500
+ns2-id-*.delay-1750            IN  A      192.0.2.174
+ns2-id-*.delay-1750            IN  AAAA   2001:db8::4e:1750
+ns2-id-*.delay-2000            IN  A      192.0.2.175
+ns2-id-*.delay-2000            IN  AAAA   2001:db8::4e:2000
+ns2-id-*.delay-3000            IN  A      192.0.2.176
+ns2-id-*.delay-3000            IN  AAAA   2001:db8::4e:3000
+ns2-id-*.delay-4000            IN  A      192.0.2.177
+ns2-id-*.delay-4000            IN  AAAA   2001:db8::4e:4000
+ns2-id-*.delay-5000            IN  A      192.0.2.178
+ns2-id-*.delay-5000            IN  AAAA   2001:db8::4e:a000
+ns2-id-*.delay-10000            IN  A      192.0.2.178
+ns2-id-*.delay-10000            IN  AAAA   2001:db8::4e:a000
+ns2-id-*.delay-60000            IN  A      192.0.2.178
+ns2-id-*.delay-60000            IN  AAAA   2001:db8::4e:6f00
+
+id-*.v6ns-only                  IN    NS ipv6-only.v1-rdns.example.com.
+id-*.dns-delay-0              IN    NS  ns1-id---.delay-0.v1-rdns.example.com.
+id-*.dns-delay-0              IN    NS  ns2-id---.delay-0.v1-rdns.example.com.
+id-*.dns-delay-50             IN    NS  ns1-id---.delay-50.v1-rdns.example.com.
+id-*.dns-delay-50             IN    NS  ns2-id---.delay-50.v1-rdns.example.com.
+id-*.dns-delay-100            IN    NS  ns1-id---.delay-100.v1-rdns.example.com.
+id-*.dns-delay-100            IN    NS  ns2-id---.delay-100.v1-rdns.example.com.
+id-*.dns-delay-150            IN    NS  ns1-id---.delay-150.v1-rdns.example.com.
+id-*.dns-delay-150            IN    NS  ns2-id---.delay-150.v1-rdns.example.com.
+id-*.dns-delay-200            IN    NS  ns1-id---.delay-200.v1-rdns.example.com.
+id-*.dns-delay-200            IN    NS  ns2-id---.delay-200.v1-rdns.example.com.
+id-*.dns-delay-250            IN    NS  ns1-id---.delay-250.v1-rdns.example.com.
+id-*.dns-delay-250            IN    NS  ns2-id---.delay-250.v1-rdns.example.com.
+id-*.dns-delay-300            IN    NS  ns1-id---.delay-300.v1-rdns.example.com.
+id-*.dns-delay-300            IN    NS  ns2-id---.delay-300.v1-rdns.example.com.
+id-*.dns-delay-400            IN    NS  ns1-id---.delay-400.v1-rdns.example.com.
+id-*.dns-delay-400            IN    NS  ns2-id---.delay-400.v1-rdns.example.com.
+id-*.dns-delay-500            IN    NS  ns1-id---.delay-500.v1-rdns.example.com.
+id-*.dns-delay-500            IN    NS  ns2-id---.delay-500.v1-rdns.example.com.
+id-*.dns-delay-600            IN    NS  ns1-id---.delay-600.v1-rdns.example.com.
+id-*.dns-delay-600            IN    NS  ns2-id---.delay-600.v1-rdns.example.com.
+id-*.dns-delay-750            IN    NS  ns1-id---.delay-750.v1-rdns.example.com.
+id-*.dns-delay-750            IN    NS  ns2-id---.delay-750.v1-rdns.example.com.
+id-*.dns-delay-1000           IN    NS  ns1-id---.delay-1000.v1-rdns.example.com.
+id-*.dns-delay-1000           IN    NS  ns2-id---.delay-1000.v1-rdns.example.com.
+id-*.dns-delay-1250           IN    NS  ns1-id---.delay-1250.v1-rdns.example.com.
+id-*.dns-delay-1250           IN    NS  ns2-id---.delay-1250.v1-rdns.example.com.
+id-*.dns-delay-1500           IN    NS  ns1-id---.delay-1500.v1-rdns.example.com.
+id-*.dns-delay-1500           IN    NS  ns2-id---.delay-1500.v1-rdns.example.com.
+id-*.dns-delay-1750           IN    NS  ns1-id---.delay-1750.v1-rdns.example.com.
+id-*.dns-delay-1750           IN    NS  ns2-id---.delay-1750.v1-rdns.example.com.
+id-*.dns-delay-2000           IN    NS  ns1-id---.delay-2000.v1-rdns.example.com.
+id-*.dns-delay-2000           IN    NS  ns2-id---.delay-2000.v1-rdns.example.com.
+id-*.dns-delay-3000           IN    NS  ns1-id---.delay-3000.v1-rdns.example.com.
+id-*.dns-delay-3000           IN    NS  ns2-id---.delay-3000.v1-rdns.example.com.
+id-*.dns-delay-4000           IN    NS  ns1-id---.delay-4000.v1-rdns.example.com.
+id-*.dns-delay-4000           IN    NS  ns2-id---.delay-4000.v1-rdns.example.com.
+id-*.dns-delay-5000           IN    NS  ns1-id---.delay-5000.v1-rdns.example.com.
+id-*.dns-delay-5000           IN    NS  ns2-id---.delay-5000.v1-rdns.example.com.
+id-*.dns-delay-10000           IN    NS  ns1-id---.delay-10000.v1-rdns.example.com.
+id-*.dns-delay-10000           IN    NS  ns2-id---.delay-10000.v1-rdns.example.com.
+id-*.dns-delay-60000           IN    NS  ns1-id---.delay-60000.v1-rdns.example.com.
+id-*.dns-delay-60000           IN    NS  ns2-id---.delay-60000.v1-rdns.example.com.
+
+$ORIGIN id-*.v6ns-only.v1-rdns.example.com.
+@                 IN  SOA    ipv6-only.v1-rdns.example.com. mail.example.com. 1722513549 3600 900 604800 180
+# @                 IN  NS     ipv6-only.v1-rdns.example.com.
+
+@          IN  A 192.0.2.189
+@          IN  AAAA 2001:db8::4f:0
+
+$ORIGIN id-*.dns-delay-0.v1-rdns.example.com.
+@                 IN  SOA    ns1-id---.delay-0.v1-rdns.example.com. mail.example.com. 1722513549 3600 900 604800 180
+# @                 IN  NS     ns1-id---.delay-0.v1-rdns.example.com.
+# @                 IN  NS     ns2-id---.delay-0.v1-rdns.example.com.
+
+@          IN  A 192.0.2.189
+@          IN  AAAA 2001:db8::4f:0
+
+$ORIGIN id-*.dns-delay-50.v1-rdns.example.com.
+@                 IN  SOA    ns1-id---.delay-50.v1-rdns.example.com. mail.example.com. 1722513549 3600 900 604800 180
+# @                 IN  NS     ns1-id---.delay-50.v1-rdns.example.com.
+# @                 IN  NS     ns2-id---.delay-50.v1-rdns.example.com.
+
+@            IN  A 192.0.2.189
+@            IN  AAAA 2001:db8::4f:0
+
+$ORIGIN id-*.dns-delay-100.v1-rdns.example.com.
+@                 IN  SOA    ns1-id---.delay-100.v1-rdns.example.com. mail.example.com. 1722513549 3600 900 604800 180
+# @                 IN  NS     ns1-id---.delay-100.v1-rdns.example.com.
+# @                 IN  NS     ns2-id---.delay-100.v1-rdns.example.com.
+
+@            IN  A 192.0.2.189
+@            IN  AAAA 2001:db8::4f:0
+
+$ORIGIN id-*.dns-delay-150.v1-rdns.example.com.
+@                 IN  SOA    ns1-id---.delay-150.v1-rdns.example.com. mail.example.com. 1722513549 3600 900 604800 180
+# @                 IN  NS     ns1-id---.delay-150.v1-rdns.example.com.
+# @                 IN  NS     ns2-id---.delay-150.v1-rdns.example.com.
+
+@            IN  A 192.0.2.189
+@            IN  AAAA 2001:db8::4f:0
+
+$ORIGIN id-*.dns-delay-200.v1-rdns.example.com.
+@                 IN  SOA    ns1-id---.delay-200.v1-rdns.example.com. mail.example.com. 1722513549 3600 900 604800 180
+# @                 IN  NS     ns1-id---.delay-200.v1-rdns.example.com.
+# @                 IN  NS     ns2-id---.delay-200.v1-rdns.example.com.
+
+@            IN  A 192.0.2.189
+@            IN  AAAA 2001:db8::4f:0
+
+$ORIGIN id-*.dns-delay-250.v1-rdns.example.com.
+@                 IN  SOA    ns1-id---.delay-250.v1-rdns.example.com. mail.example.com. 1722513549 3600 900 604800 180
+# @                 IN  NS     ns1-id---.delay-250.v1-rdns.example.com.
+# @                 IN  NS     ns2-id---.delay-250.v1-rdns.example.com.
+
+@            IN  A 192.0.2.189
+@            IN  AAAA 2001:db8::4f:0
+
+$ORIGIN id-*.dns-delay-300.v1-rdns.example.com.
+@                 IN  SOA    ns1-id---.delay-300.v1-rdns.example.com. mail.example.com. 1722513549 3600 900 604800 180
+# @                 IN  NS     ns1-id---.delay-300.v1-rdns.example.com.
+# @                 IN  NS     ns2-id---.delay-300.v1-rdns.example.com.
+
+@            IN  A 192.0.2.189
+@            IN  AAAA 2001:db8::4f:0
+
+$ORIGIN id-*.dns-delay-400.v1-rdns.example.com.
+@                 IN  SOA    ns1-id---.delay-400.v1-rdns.example.com. mail.example.com. 1722513549 3600 900 604800 180
+# @                 IN  NS     ns1-id---.delay-400.v1-rdns.example.com.
+# @                 IN  NS     ns2-id---.delay-400.v1-rdns.example.com.
+
+@            IN  A 192.0.2.189
+@            IN  AAAA 2001:db8::4f:0
+
+$ORIGIN id-*.dns-delay-500.v1-rdns.example.com.
+@                 IN  SOA    ns1-id---.delay-500.v1-rdns.example.com. mail.example.com. 1722513549 3600 900 604800 180
+# @                 IN  NS     ns1-id---.delay-500.v1-rdns.example.com.
+# @                 IN  NS     ns2-id---.delay-500.v1-rdns.example.com.
+
+@            IN  A 192.0.2.189
+@            IN  AAAA 2001:db8::4f:0
+
+$ORIGIN id-*.dns-delay-600.v1-rdns.example.com.
+@                 IN  SOA    ns1-id---.delay-600.v1-rdns.example.com. mail.example.com. 1722513549 3600 900 604800 180
+# @                 IN  NS     ns1-id---.delay-600.v1-rdns.example.com.
+# @                 IN  NS     ns2-id---.delay-600.v1-rdns.example.com.
+
+@            IN  A 192.0.2.189
+@            IN  AAAA 2001:db8::4f:0
+
+$ORIGIN id-*.dns-delay-750.v1-rdns.example.com.
+@                 IN  SOA    ns1-id---.delay-750.v1-rdns.example.com. mail.example.com. 1722513549 3600 900 604800 180
+# @                 IN  NS     ns1-id---.delay-750.v1-rdns.example.com.
+# @                 IN  NS     ns2-id---.delay-750.v1-rdns.example.com.
+
+@            IN  A 192.0.2.189
+@            IN  AAAA 2001:db8::4f:0
+
+$ORIGIN id-*.dns-delay-1000.v1-rdns.example.com.
+@                 IN  SOA    ns1-id---.delay-1000.v1-rdns.example.com. mail.example.com. 1722513549 3600 900 604800 180
+# @                 IN  NS     ns1-id---.delay-1000.v1-rdns.example.com.
+# @                 IN  NS     ns2-id---.delay-1000.v1-rdns.example.com.
+
+@            IN  A 192.0.2.189
+@            IN  AAAA 2001:db8::4f:0
+
+$ORIGIN id-*.dns-delay-1250.v1-rdns.example.com.
+@                 IN  SOA    ns1-id---.delay-1250.v1-rdns.example.com. mail.example.com. 1722513549 3600 900 604800 180
+# @                 IN  NS     ns1-id---.delay-1250.v1-rdns.example.com.
+# @                 IN  NS     ns2-id---.delay-1250.v1-rdns.example.com.
+
+@            IN  A 192.0.2.189
+@            IN  AAAA 2001:db8::4f:0
+
+$ORIGIN id-*.dns-delay-1500.v1-rdns.example.com.
+@                 IN  SOA    ns1-id---.delay-1500.v1-rdns.example.com. mail.example.com. 1722513549 3600 900 604800 180
+# @                 IN  NS     ns1-id---.delay-1500.v1-rdns.example.com.
+# @                 IN  NS     ns2-id---.delay-1500.v1-rdns.example.com.
+
+@            IN  A 192.0.2.189
+@            IN  AAAA 2001:db8::4f:0
+
+$ORIGIN id-*.dns-delay-1750.v1-rdns.example.com.
+@                 IN  SOA    ns1-id---.delay-1750.v1-rdns.example.com. mail.example.com. 1722513549 3600 900 604800 180
+# @                 IN  NS     ns1-id---.delay-1750.v1-rdns.example.com.
+# @                 IN  NS     ns2-id---.delay-1750.v1-rdns.example.com.
+
+@            IN  A 192.0.2.189
+@            IN  AAAA 2001:db8::4f:0
+
+$ORIGIN id-*.dns-delay-2000.v1-rdns.example.com.
+@                 IN  SOA    ns1-id---.delay-2000.v1-rdns.example.com. mail.example.com. 1722513549 3600 900 604800 180
+# @                 IN  NS     ns1-id---.delay-2000.v1-rdns.example.com.
+# @                 IN  NS     ns2-id---.delay-2000.v1-rdns.example.com.
+
+@            IN  A 192.0.2.189
+@            IN  AAAA 2001:db8::4f:0
+
+$ORIGIN id-*.dns-delay-3000.v1-rdns.example.com.
+@                 IN  SOA    ns1-id---.delay-3000.v1-rdns.example.com. mail.example.com. 1722513549 3600 900 604800 180
+# @                 IN  NS     ns1-id---.delay-3000.v1-rdns.example.com.
+# @                 IN  NS     ns2-id---.delay-3000.v1-rdns.example.com.
+
+@            IN  A 192.0.2.189
+@            IN  AAAA 2001:db8::4f:0
+
+$ORIGIN id-*.dns-delay-4000.v1-rdns.example.com.
+@                 IN  SOA    ns1-id---.delay-4000.v1-rdns.example.com. mail.example.com. 1722513549 3600 900 604800 180
+# @                 IN  NS     ns1-id---.delay-4000.v1-rdns.example.com.
+# @                 IN  NS     ns2-id---.delay-4000.v1-rdns.example.com.
+
+@            IN  A 192.0.2.189
+@            IN  AAAA 2001:db8::4f:0
+
+$ORIGIN id-*.dns-delay-5000.v1-rdns.example.com.
+@                 IN  SOA    ns1-id---.delay-5000.v1-rdns.example.com. mail.example.com. 1722513549 3600 900 604800 180
+# @                 IN  NS     ns1-id---.delay-5000.v1-rdns.example.com.
+# @                 IN  NS     ns2-id---.delay-5000.v1-rdns.example.com.
+
+@            IN  A 192.0.2.189
+@            IN  AAAA 2001:db8::4f:0
+
+$ORIGIN id-*.dns-delay-10000.v1-rdns.example.com.
+@                 IN  SOA    ns1-id---.delay-10000.v1-rdns.example.com. mail.example.com. 1722513549 3600 900 604800 180
+# @                 IN  NS     ns2-id---.delay-10000.v1-rdns.example.com.
+# @                 IN  NS     ns1-id---.delay-10000.v1-rdns.example.com.
+
+@            IN  A 192.0.2.189
+@            IN  AAAA 2001:db8::4f:0
+
+$ORIGIN id-*.dns-delay-60000.v1-rdns.example.com.
+@                 IN  SOA    ns1-id---.delay-60000.v1-rdns.example.com. mail.example.com. 1722513549 3600 900 604800 180
+# @                 IN  NS     ns2-id---.delay-60000.v1-rdns.example.com.
+# @                 IN  NS     ns1-id---.delay-60000.v1-rdns.example.com.
+
+@            IN  A 192.0.2.189
+@            IN  AAAA 2001:db8::4f:0
+
+$ORIGIN v2.example.com.
+@                 IN  SOA    ns1.example.com. mail.example.com. 1722513549 3600 900 604800 180
+@                 IN  NS     ns1.example.com.
+@                 IN  NS     ns2.example.com.
+
+v2delay_a-*          IN  A 192.0.2.189
+v2delay_a-*          IN  AAAA 2001:db8::4f:0
+
+v2delay_aaaa-*          IN  A 192.0.2.189
+v2delay_aaaa-*          IN  AAAA 2001:db8::4f:0

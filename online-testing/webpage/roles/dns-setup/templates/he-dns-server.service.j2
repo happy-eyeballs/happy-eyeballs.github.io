@@ -1,0 +1,16 @@
+[Unit]
+Description=Happy Eyeballs Tester DNS Server
+ConditionFileIsExecutable=/data/happy-eyeballs-test/dns/start.sh
+ConditionFileIsExecutable=/data/happy-eyeballs-test/dns/destroy.sh
+Wants=network-online.target
+After=network-online.target
+RequiresMountsFor=%t/containers
+OnFailure=status-email@%n.service
+
+[Service]
+Environment=PODMAN_SYSTEMD_UNIT=%n
+Environment=DOCKER_HOST=unix:///run/user/1004/podman/podman.sock
+Type=simple
+User={{ dns_user }}
+ExecStart=/data/happy-eyeballs-test/dns/start.sh
+ExecStopPost=/usr/local/bin/systemd-email %n --no-send-on-success
