@@ -10,8 +10,18 @@ Happy Eyeballs (HE) started out by describing a mechanism that prefers IPv6 conn
 
 ## Online Test Tools
 
+We will make our online test tool available to the public when double-blind restrictions are lifted. You can find a video of a testrun with our tool below.
+
 - [Website Setup](https://github.com/happy-eyeballs/happy-eyeballs.github.io/tree/main/online-testing/webpage)
 - [Open Resolver Scan](https://github.com/happy-eyeballs/happy-eyeballs.github.io/tree/main/online-testing/dnsscan)
+
+### Safari Test Run
+
+<video controls width="320">
+  <source src="website-testrun.webm" type="video/webm" />
+
+  <a href="website-testrun.webm">Safari test run</a> showing its inconsistent HE behavior. In this example Safari uses an apparent connection attempt delay (CAD) of 250ms.
+</video>
 
 ## Overview of Browser Results
 
