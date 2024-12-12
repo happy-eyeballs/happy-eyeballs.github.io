@@ -26,7 +26,7 @@ We will make our online test tool available to the public when double-blind rest
 ## Overview of Browser Results
 
 
-<table>
+<table style="overflow: scroll; display: block;">
   <thead>
     <tr>
       <th style="text-align: left">Browser</th>
