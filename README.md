@@ -171,7 +171,7 @@ We will make our online test tool available to the public when double-blind rest
   </tbody>
 </table>
 
-<sup style="vertical-align: super">1</sup> May also be influenced by the operating system's stub resolver except for Chromium-based browsers which use their own stub resolver.
-<sup style="vertical-align: super">2</sup> Chromium and Chrome offer a feature flag to enable this feature. Possibly in future this will be enabled by default for all Chromium-based browsers.
-<sup style="vertical-align: super">3</sup> The observed multiple CAD values for Mozilla Firefox. Nevertheless, 250ms was the dominating value.
-<sup style="vertical-align: super">4</sup> Safari uses a dynamic approach. We could not determine scenarios or configurations which trigger a specific result.
+<sup style="vertical-align: super">1</sup> May also be influenced by the operating system's stub resolver except for Chromium-based browsers which use their own stub resolver.<br/>
+<sup style="vertical-align: super">2</sup> Chromium and Chrome offer a feature flag to enable this feature. Possibly in future this will be enabled by default for all Chromium-based browsers.<br/>
+<sup style="vertical-align: super">3</sup> The observed multiple CAD values for Mozilla Firefox. Nevertheless, 250ms was the dominating value.<br/>
+<sup style="vertical-align: super">4</sup> Safari uses a dynamic approach. We could not determine scenarios or configurations which trigger a specific result.<br/>
