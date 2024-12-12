@@ -26,21 +26,150 @@ We will make our online test tool available to the public when double-blind rest
 ## Overview of Browser Results
 
 
-| Browser | Version | IPv6 Preferred | CAD | AAAA first<sup>1</sup> | RD Impl. | Num IPv4 Used | Num IPv6 Used | Addr. Selection | Local/Webtest Consistency |
-|:--------|--------:|---------------:|----:|-----------:|---------:|--------------:|--------------:|----------------:|--------------:|
-| Google Chrome  |   130.0 | <span style="background-color:green;color:white">Yes</span> | <span style="background-color:green;color:white">300ms</span> | <span style="background-color:green;color:white">Yes</span> | <span style="background-color:red;color:white">No<sup>2</sup></span> | 1 | 1 | <span style="background-color:red;color:white">No</span> | <span style="background-color:green;color:white">Yes</span> |
-| Chromium  |   130.0 | <span style="background-color:green;color:white">Yes</span> | <span style="background-color:green;color:white">300ms</span> | <span style="background-color:green;color:white">Yes</span> | <span style="background-color:red;color:white">No<sup>2</sup></span> | 1 | 1 | <span style="background-color:red;color:white">No</span> | <span style="background-color:green;color:white">Yes</span> |
-| Microsoft Edge  |   130.0 | <span style="background-color:green;color:white">Yes</span> | <span style="background-color:green;color:white">300ms</span> | <span style="background-color:green;color:white">Yes</span> | <span style="background-color:red;color:white">No</span> | 1 | 1 | <span style="background-color:red;color:white">No</span> | <span style="background-color:green;color:white">Yes</span> |
-| Mozilla Firefox  |   132.0 | <span style="background-color:green;color:white">Yes</span> | <span style="background-color:green;color:white">250ms</span> | <span style="background-color:red;color:white">No</span> | <span style="background-color:red;color:white">No</span> | 1 | 1 | <span style="background-color:red;color:white">No</span> | <span style="background-color:orange;color:white">Mostly<sup>3</sup></span> |
-| Safari |   17.6 | <span style="background-color:green;color:white">Yes</span> | <span style="background-color:green;color:white">50ms - 2s</span> | <span style="background-color:green;color:white">Yes</span> | <span style="background-color:green;color:white">Yes</span> | all | all | <span style="background-color:green;color:white">Yes</span> | <span style="background-color:red;color:white">No<sup>4</sup></span> |
-|<td colspan=9>**Mobile Browsers** (*No Addresses selection tests available with our website testing*)</td> |
-| Mobile Safari |   17.6 & 18.1 | <span style="background-color:green;color:white">Yes</span> | <span style="background-color:green;color:white">50ms - 1s</span> | <span style="background-color:green;color:white">Yes</span> | <span style="background-color:green;color:white">Yes</span> | - | - | - | - |
-| Google Chrome Mobile |  127.0 & 130.0 | <span style="background-color:green;color:white">Yes</span> | <span style="background-color:green;color:white">300ms</span> | <span style="background-color:red;color:white">No</span> | <span style="background-color:red;color:white">No</span> | - | - | - | - |
-| Mozilla Firefox Mobile |   125.0, 128.0, & 131.0 | <span style="background-color:green;color:white">Yes</span> | <span style="background-color:green;color:white">300ms</span> | <span style="background-color:red;color:white">No</span> | <span style="background-color:red;color:white">No</span> | - | - | - | - |
-| <td colspan=9>**Command Line Tools** (*Wget does not perform any type of HE*)</td> |
-| curl |   7.88.1 | <span style="background-color:green;color:white">Yes</span> | <span style="background-color:green;color:white">200ms</span> | <span style="background-color:gree;color:white">Yes</span> | <span style="background-color:red;color:white">No</span> | 1 | 1 | <span style="background-color:red;color:white">No</span> | - |
-| wget |   1.21.3 | <span style="background-color:green;color:white">Yes</span> | <span style="background-color:red;color:white">-</span> | <span style="background-color:red;color:white">No</span> | <span style="background-color:red;color:white">No</span> | 0 | 1 | <span style="background-color:red;color:white">No</span> | - |
-
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Browser</th>
+      <th style="text-align: right">Version</th>
+      <th style="text-align: right">IPv6 Preferred</th>
+      <th style="text-align: right">CAD</th>
+      <th style="text-align: right">AAAA first<sup>1</sup></th>
+      <th style="text-align: right">RD Impl.</th>
+      <th style="text-align: right">Num IPv4 Used</th>
+      <th style="text-align: right">Num IPv6 Used</th>
+      <th style="text-align: right">Addr. Selection</th>
+      <th style="text-align: right">Local/Webtest Consistency</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Google Chrome</td>
+      <td style="text-align: right">130.0</td>
+      <td style="text-align: right"><span style="background-color:green;color:white">Yes</span></td>
+      <td style="text-align: right"><span style="background-color:green;color:white">300ms</span></td>
+      <td style="text-align: right"><span style="background-color:green;color:white">Yes</span></td>
+      <td style="text-align: right"><span style="background-color:red;color:white">No<sup>2</sup></span></td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right"><span style="background-color:red;color:white">No</span></td>
+      <td style="text-align: right"><span style="background-color:green;color:white">Yes</span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Chromium</td>
+      <td style="text-align: right">130.0</td>
+      <td style="text-align: right"><span style="background-color:green;color:white">Yes</span></td>
+      <td style="text-align: right"><span style="background-color:green;color:white">300ms</span></td>
+      <td style="text-align: right"><span style="background-color:green;color:white">Yes</span></td>
+      <td style="text-align: right"><span style="background-color:red;color:white">No<sup>2</sup></span></td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right"><span style="background-color:red;color:white">No</span></td>
+      <td style="text-align: right"><span style="background-color:green;color:white">Yes</span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Microsoft Edge</td>
+      <td style="text-align: right">130.0</td>
+      <td style="text-align: right"><span style="background-color:green;color:white">Yes</span></td>
+      <td style="text-align: right"><span style="background-color:green;color:white">300ms</span></td>
+      <td style="text-align: right"><span style="background-color:green;color:white">Yes</span></td>
+      <td style="text-align: right"><span style="background-color:red;color:white">No</span></td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right"><span style="background-color:red;color:white">No</span></td>
+      <td style="text-align: right"><span style="background-color:green;color:white">Yes</span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Mozilla Firefox</td>
+      <td style="text-align: right">132.0</td>
+      <td style="text-align: right"><span style="background-color:green;color:white">Yes</span></td>
+      <td style="text-align: right"><span style="background-color:green;color:white">250ms</span></td>
+      <td style="text-align: right"><span style="background-color:red;color:white">No</span></td>
+      <td style="text-align: right"><span style="background-color:red;color:white">No</span></td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right"><span style="background-color:red;color:white">No</span></td>
+      <td style="text-align: right"><span style="background-color:orange;color:white">Mostly<sup>3</sup></span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Safari</td>
+      <td style="text-align: right">17.6</td>
+      <td style="text-align: right"><span style="background-color:green;color:white">Yes</span></td>
+      <td style="text-align: right"><span style="background-color:green;color:white">50ms - 2s</span></td>
+      <td style="text-align: right"><span style="background-color:green;color:white">Yes</span></td>
+      <td style="text-align: right"><span style="background-color:green;color:white">Yes</span></td>
+      <td style="text-align: right">all</td>
+      <td style="text-align: right">all</td>
+      <td style="text-align: right"><span style="background-color:green;color:white">Yes</span></td>
+      <td style="text-align: right"><span style="background-color:red;color:white">No<sup>4</sup></span></td>
+    </tr>
+    <tr>
+      <td style="text-align: left;" colspan="9"><strong>Mobile Browsers</strong> (<em>No Addresses selection tests available with our website testing</em>)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Mobile Safari</td>
+      <td style="text-align: right">17.6 &amp; 18.1</td>
+      <td style="text-align: right"><span style="background-color:green;color:white">Yes</span></td>
+      <td style="text-align: right"><span style="background-color:green;color:white">50ms - 1s</span></td>
+      <td style="text-align: right"><span style="background-color:green;color:white">Yes</span></td>
+      <td style="text-align: right"><span style="background-color:green;color:white">Yes</span></td>
+      <td style="text-align: right">-</td>
+      <td style="text-align: right">-</td>
+      <td style="text-align: right">-</td>
+      <td style="text-align: right">-</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Google Chrome Mobile</td>
+      <td style="text-align: right">127.0 &amp; 130.0</td>
+      <td style="text-align: right"><span style="background-color:green;color:white">Yes</span></td>
+      <td style="text-align: right"><span style="background-color:green;color:white">300ms</span></td>
+      <td style="text-align: right"><span style="background-color:red;color:white">No</span></td>
+      <td style="text-align: right"><span style="background-color:red;color:white">No</span></td>
+      <td style="text-align: right">-</td>
+      <td style="text-align: right">-</td>
+      <td style="text-align: right">-</td>
+      <td style="text-align: right">-</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Mozilla Firefox Mobile</td>
+      <td style="text-align: right">125.0, 128.0, &amp; 131.0</td>
+      <td style="text-align: right"><span style="background-color:green;color:white">Yes</span></td>
+      <td style="text-align: right"><span style="background-color:green;color:white">300ms</span></td>
+      <td style="text-align: right"><span style="background-color:red;color:white">No</span></td>
+      <td style="text-align: right"><span style="background-color:red;color:white">No</span></td>
+      <td style="text-align: right">-</td>
+      <td style="text-align: right">-</td>
+      <td style="text-align: right">-</td>
+      <td style="text-align: right">-</td>
+    </tr>
+    <tr>
+      <td style="text-align: left" colspan="9"><strong>Command Line Tools</strong> (<em>Wget does not perform any type of HE</em>)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">curl</td>
+      <td style="text-align: right">7.88.1</td>
+      <td style="text-align: right"><span style="background-color:green;color:white">Yes</span></td>
+      <td style="text-align: right"><span style="background-color:green;color:white">200ms</span></td>
+      <td style="text-align: right"><span style="background-color:gree;color:white">Yes</span></td>
+      <td style="text-align: right"><span style="background-color:red;color:white">No</span></td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right"><span style="background-color:red;color:white">No</span></td>
+      <td style="text-align: right">-</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">wget</td>
+      <td style="text-align: right">1.21.3</td>
+      <td style="text-align: right"><span style="background-color:green;color:white">Yes</span></td>
+      <td style="text-align: right"><span style="background-color:red;color:white">-</span></td>
+      <td style="text-align: right"><span style="background-color:red;color:white">No</span></td>
+      <td style="text-align: right"><span style="background-color:red;color:white">No</span></td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right"><span style="background-color:red;color:white">No</span></td>
+      <td style="text-align: right">-</td>
+    </tr>
+  </tbody>
+</table>
 
 <sup>1</sup> May also be influenced by the operating system's stub resolver except for Chromium-based browsers which use their own stub resolver.
 <sup>2</sup> Chromium and Chrome offer a feature flag to enable this feature. Possibly in future this will be enabled by default for all Chromium-based browsers.
