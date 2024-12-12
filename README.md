@@ -17,10 +17,10 @@ We will make our online test tool available to the public when double-blind rest
 
 ### Safari Test Run
 
+<a href="website-testrun.webm">Safari test run</a> showing its inconsistent HE behavior. In this example Safari uses an apparent connection attempt delay (CAD) of 250ms.
+
 <video controls width="100%">
   <source src="website-testrun.webm" type="video/webm" />
-
-  <a href="website-testrun.webm">Safari test run</a> showing its inconsistent HE behavior. In this example Safari uses an apparent connection attempt delay (CAD) of 250ms.
 </video>
 
 ## Overview of Browser Results
