@@ -33,7 +33,7 @@ We will make our online test tool available to the public when double-blind rest
       <th style="text-align: right">Version</th>
       <th style="text-align: right">IPv6 Preferred</th>
       <th style="text-align: right">CAD</th>
-      <th style="text-align: right">AAAA first<sup>1</sup></th>
+      <th style="text-align: right">AAAA first<sup style="vertical-align: super">1</sup></th>
       <th style="text-align: right">RD Impl.</th>
       <th style="text-align: right">Num IPv4 Used</th>
       <th style="text-align: right">Num IPv6 Used</th>
@@ -48,7 +48,7 @@ We will make our online test tool available to the public when double-blind rest
       <td style="text-align: right"><span style="background-color:green;color:white">Yes</span></td>
       <td style="text-align: right"><span style="background-color:green;color:white">300ms</span></td>
       <td style="text-align: right"><span style="background-color:green;color:white">Yes</span></td>
-      <td style="text-align: right"><span style="background-color:red;color:white">No<sup>2</sup></span></td>
+      <td style="text-align: right"><span style="background-color:red;color:white">No<sup style="vertical-align: super">2</sup></span></td>
       <td style="text-align: right">1</td>
       <td style="text-align: right">1</td>
       <td style="text-align: right"><span style="background-color:red;color:white">No</span></td>
@@ -60,7 +60,7 @@ We will make our online test tool available to the public when double-blind rest
       <td style="text-align: right"><span style="background-color:green;color:white">Yes</span></td>
       <td style="text-align: right"><span style="background-color:green;color:white">300ms</span></td>
       <td style="text-align: right"><span style="background-color:green;color:white">Yes</span></td>
-      <td style="text-align: right"><span style="background-color:red;color:white">No<sup>2</sup></span></td>
+      <td style="text-align: right"><span style="background-color:red;color:white">No<sup style="vertical-align: super">2</sup></span></td>
       <td style="text-align: right">1</td>
       <td style="text-align: right">1</td>
       <td style="text-align: right"><span style="background-color:red;color:white">No</span></td>
@@ -88,7 +88,7 @@ We will make our online test tool available to the public when double-blind rest
       <td style="text-align: right">1</td>
       <td style="text-align: right">1</td>
       <td style="text-align: right"><span style="background-color:red;color:white">No</span></td>
-      <td style="text-align: right"><span style="background-color:orange;color:white">Mostly<sup>3</sup></span></td>
+      <td style="text-align: right"><span style="background-color:orange;color:white">Mostly<sup style="vertical-align: super">3</sup></span></td>
     </tr>
     <tr>
       <td style="text-align: left">Safari</td>
@@ -100,7 +100,7 @@ We will make our online test tool available to the public when double-blind rest
       <td style="text-align: right">all</td>
       <td style="text-align: right">all</td>
       <td style="text-align: right"><span style="background-color:green;color:white">Yes</span></td>
-      <td style="text-align: right"><span style="background-color:red;color:white">No<sup>4</sup></span></td>
+      <td style="text-align: right"><span style="background-color:red;color:white">No<sup style="vertical-align: super">4</sup></span></td>
     </tr>
     <tr>
       <td style="text-align: left;" colspan="10"><strong>Mobile Browsers</strong> (<em>No Addresses selection tests available with our website testing</em>)</td>
@@ -171,7 +171,7 @@ We will make our online test tool available to the public when double-blind rest
   </tbody>
 </table>
 
-<sup>1</sup> May also be influenced by the operating system's stub resolver except for Chromium-based browsers which use their own stub resolver.
-<sup>2</sup> Chromium and Chrome offer a feature flag to enable this feature. Possibly in future this will be enabled by default for all Chromium-based browsers.
-<sup>3</sup> The observed multiple CAD values for Mozilla Firefox. Nevertheless, 250ms was the dominating value.
-<sup>4</sup> Safari uses a dynamic approach. We could not determine scenarios or configurations which trigger a specific result.
+<sup style="vertical-align: super">1</sup> May also be influenced by the operating system's stub resolver except for Chromium-based browsers which use their own stub resolver.
+<sup style="vertical-align: super">2</sup> Chromium and Chrome offer a feature flag to enable this feature. Possibly in future this will be enabled by default for all Chromium-based browsers.
+<sup style="vertical-align: super">3</sup> The observed multiple CAD values for Mozilla Firefox. Nevertheless, 250ms was the dominating value.
+<sup style="vertical-align: super">4</sup> Safari uses a dynamic approach. We could not determine scenarios or configurations which trigger a specific result.
