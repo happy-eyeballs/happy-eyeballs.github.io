@@ -103,7 +103,7 @@ We will make our online test tool available to the public when double-blind rest
       <td style="text-align: right"><span style="background-color:red;color:white">No<sup>4</sup></span></td>
     </tr>
     <tr>
-      <td style="text-align: left;" colspan="9"><strong>Mobile Browsers</strong> (<em>No Addresses selection tests available with our website testing</em>)</td>
+      <td style="text-align: left;" colspan="10"><strong>Mobile Browsers</strong> (<em>No Addresses selection tests available with our website testing</em>)</td>
     </tr>
     <tr>
       <td style="text-align: left">Mobile Safari</td>
@@ -142,7 +142,7 @@ We will make our online test tool available to the public when double-blind rest
       <td style="text-align: right">-</td>
     </tr>
     <tr>
-      <td style="text-align: left" colspan="9"><strong>Command Line Tools</strong> (<em>Wget does not perform any type of HE</em>)</td>
+      <td style="text-align: left" colspan="10"><strong>Command Line Tools</strong> (<em>Wget does not perform any type of HE</em>)</td>
     </tr>
     <tr>
       <td style="text-align: left">curl</td>
