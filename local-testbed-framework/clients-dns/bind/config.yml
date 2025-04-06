@@ -1,0 +1,4 @@
+versions:
+  environmentVariableName: BIND_VERSION
+  values:
+    - 9.20

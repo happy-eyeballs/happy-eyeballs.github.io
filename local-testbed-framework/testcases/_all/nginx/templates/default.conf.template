@@ -1,0 +1,10 @@
+server_tokens off;
+proxy_hide_header X-Powered-By;
+
+server {
+  listen      80 default_server;
+  listen [::]:80 default_server;
+
+  default_type text/plain;
+  return 200 $remote_addr;
+}

@@ -1,0 +1,6 @@
+services:
+  knot:
+    image: cznic/knot-resolver:$LC_KNOT_VERSION
+    network_mode: "host"
+    volumes:
+      - ./knot-etc/config.yaml:/etc/knot-resolver/config.yaml

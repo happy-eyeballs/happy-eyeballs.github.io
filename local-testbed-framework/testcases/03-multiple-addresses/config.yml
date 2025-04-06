@@ -1,0 +1,26 @@
+stages:
+  - restartClient
+  - netemBefore
+  - request
+  - netemAfter
+
+targets:
+  - tag: _client
+    scripts:
+      - stage: request
+        script: request_wrapper.sh
+
+      - stage: restartClient
+        script: restart_wrapper.sh
+
+  - tag: netem
+    scripts:
+      - stage: netemBefore
+        script: before.sh
+
+      - stage: netemAfter
+        always: true
+        script: after.sh
+
+evaluation:
+  script: evaluate.sh

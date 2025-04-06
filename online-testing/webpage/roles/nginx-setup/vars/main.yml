@@ -1,0 +1,29 @@
+certbot_admin_email: scans@example.com
+certbot_domains: "{{ headdresses | map(attribute='delay') | map('string') | map('regex_replace', '(.+)', '*.delay-\\1.v1.example.com') | unique | list }}"
+certbot_v2_domain: "*.v2.example.com"
+certbot_command: >-
+  certbot certonly --manual --preferred-challenges=dns --agree-tos
+  --email {{ certbot_admin_email }}
+  -d {{ certbot_domains | join(',') }}
+
+certbot_command_v2: >-
+  certbot certonly --manual --preferred-challenges=dns --agree-tos
+  --email {{ certbot_admin_email }}
+  -d {{ certbot_v2_domain }}
+
+certbot_v6only_domain: ipv6-only.v1.example.com
+certbot_v4only_domain: ipv4-only.v1.example.com
+
+certbot_command_version_only: >-
+  certbot certonly --nginx --noninteractive --agree-tos
+  --email {{ certbot_admin_email }}
+  -d {{ certbot_v6only_domain }},{{ certbot_v4only_domain }}
+
+server_base_path: /data/happy-eyeballs-test/upload-server
+server_venv_path: /data/happy-eyeballs-test/upload-server/venv
+upload_dir: /data/happy-eyeballs-test/results-data
+dns_upload_dir: /data/happy-eyeballs-test/dns-query-data
+v2_oupload_dir: /data/happy-eyeballs-test/v2-results-data
+
+upload_user: sattler
+upload_group: sattler

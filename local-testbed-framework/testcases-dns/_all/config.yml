@@ -1,0 +1,39 @@
+stages:
+  - beforeAll
+  - beforeEach
+  - afterEach
+  - afterAll
+
+targets:
+  - tag: _client
+    scripts:
+      - stage: beforeAll
+        script: start_wrapper.sh
+
+      - stage: afterAll
+        script: destroy_wrapper.sh
+        always: true
+
+  - tag: tcpdump
+    scripts:
+      - stage: beforeEach
+        script: start.sh
+
+      - stage: afterEach
+        script: stop.sh
+        always: true
+        artifacts:
+          - pcaps
+
+      - stage: afterAll
+        script: destroy.sh
+        always: true
+
+  - tag: dns
+    scripts:
+      - stage: beforeAll
+        script: start.sh
+
+      - stage: afterAll
+        script: destroy.sh
+        always: true

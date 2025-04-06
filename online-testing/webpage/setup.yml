@@ -1,0 +1,9 @@
+---
+- name: Setup Host for HE Web Test
+  hosts: develop
+  gather_facts: true
+
+  roles:
+    - net-test-setup
+    - dns-setup
+    - nginx-setup

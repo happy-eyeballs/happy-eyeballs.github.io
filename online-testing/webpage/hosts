@@ -1,0 +1,192 @@
+all:
+    children:
+        develop:
+            hosts:
+                examplehost:
+                    ansible_hosts: host.example.com
+                    ansible_user: root
+                    ansible_port: 10022
+                    heinterface: enp3s0.220
+                    v6onlyaddress: 2001:db8::4f:0
+                    v4onlyaddress: 192.0.2.189
+                    otheraddrs:
+                        ipv4:
+                            - 192.0.2.189
+                            - 192.0.2.190
+                            - 192.0.2.191
+                        ipv6:
+                            - 2001:db8::4f:0
+                            - 2001:db8::d:1
+                            - 2001:db8::d:2
+                    headdresses:
+                        -
+                            address: 192.0.2.160
+                            delay: 0
+                        -
+                            address: 192.0.2.161
+                            delay: 0
+                        -
+                            address: 192.0.2.162
+                            delay: 0
+                        -
+                            address: 192.0.2.163
+                            delay: 0
+                        -
+                            address: 192.0.2.164
+                            delay: 0
+                        -
+                            address: 192.0.2.165
+                            delay: 0
+                        -
+                            address: 192.0.2.166
+                            delay: 0
+                        -
+                            address: 192.0.2.167
+                            delay: 0
+                        -
+                            address: 192.0.2.168
+                            delay: 0
+                        -
+                            address: 192.0.2.169
+                            delay: 0
+                        -
+                            address: 192.0.2.170
+                            delay: 0
+                        -
+                            address: 192.0.2.171
+                            delay: 0
+                        -
+                            address: 192.0.2.172
+                            delay: 0
+                        -
+                            address: 192.0.2.173
+                            delay: 0
+                        -
+                            address: 192.0.2.174
+                            delay: 0
+                        -
+                            address: 192.0.2.175
+                            delay: 0
+                        -
+                            address: 192.0.2.176
+                            delay: 0
+                        -
+                            address: 192.0.2.177
+                            delay: 0
+                        -
+                            address: 192.0.2.178
+                            delay: 0
+                        -
+                            address: 192.0.2.179
+                            delay: 0
+                        -
+                            address: 192.0.2.180
+                            delay: 0
+                        -
+                            address: 192.0.2.181
+                            delay: 0
+                        -
+                            address: 192.0.2.182
+                            delay: 0
+                        -
+                            address: 192.0.2.183
+                            delay: 0
+                        -
+                            address: 192.0.2.184
+                            delay: 0
+                        -
+                            address: 192.0.2.185
+                            delay: 0
+                        -
+                            address: 192.0.2.186
+                            delay: 0
+                        -
+                            address: 192.0.2.187
+                            delay: 0
+                        -
+                            address: 192.0.2.188
+                            delay: 0
+                        -
+                            address: 2001:db8::4e:50
+                            delay: 50
+                            classid: 50
+                        -
+                            address: 2001:db8::4e:100
+                            delay: 100
+                            classid: 100
+                        -
+                            address: 2001:db8::4e:150
+                            delay: 150
+                            classid: 150
+                        -
+                            address: 2001:db8::4e:200
+                            delay: 200
+                            classid: 200
+                        -
+                            address: 2001:db8::4e:250
+                            delay: 250
+                            classid: 250
+                        -
+                            address: 2001:db8::4e:300
+                            delay: 300
+                            classid: 300
+                        -
+                            address: 2001:db8::4e:400
+                            delay: 400
+                            classid: 400
+                        -
+                            address: 2001:db8::4e:500
+                            delay: 500
+                            classid: 500
+                        -
+                            address: 2001:db8::4e:600
+                            delay: 600
+                            classid: 600
+                        -
+                            address: 2001:db8::4e:750
+                            delay: 750
+                            classid: 750
+                        -
+                            address: 2001:db8::4e:1000
+                            delay: 1000
+                            classid: 1000
+                        -
+                            address: 2001:db8::4e:1250
+                            delay: 1250
+                            classid: 1250
+                        -
+                            address: 2001:db8::4e:1500
+                            delay: 1500
+                            classid: 1500
+                        -
+                            address: 2001:db8::4e:1750
+                            delay: 1750
+                            classid: 1750
+                        -
+                            address: 2001:db8::4e:2000
+                            delay: 2000
+                            classid: 2000
+                        -
+                            address: 2001:db8::4e:3000
+                            delay: 3000
+                            classid: 3000
+                        -
+                            address: 2001:db8::4e:4000
+                            delay: 4000
+                            classid: 4000
+                        -
+                            address: 2001:db8::4e:5000
+                            delay: 5000
+                            classid: 5000
+                        -
+                            address: 2001:db8::4e:a000
+                            delay: 10000
+                            classid: 1001
+                        -
+                            address: 2001:db8::4e:6f00
+                            delay: 60000
+                            classid: 6001
+                        -
+                            address: 2001:db8::4e:0
+                            delay: 0
+

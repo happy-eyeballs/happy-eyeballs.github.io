@@ -1,0 +1,11 @@
+services:
+  dns:
+    build:
+      dockerfile: build/Dockerfile
+    restart: unless-stopped
+    network_mode: 'host'
+    command: --listen ${LC_DNS_BIND_ADDRESS}
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./dns.zone:/app/dns.zone:ro
+#      - ./queries:/data

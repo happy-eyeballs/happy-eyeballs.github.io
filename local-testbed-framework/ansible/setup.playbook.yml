@@ -1,0 +1,34 @@
+- name: Add client and server hosts
+  hosts: localhost
+  tasks:
+    - name: Add client node
+      add_host:
+        hostname: client_node
+        ansible_ssh_host: "{{ client_node }}.{{ local_domain }}"
+        ansible_ssh_port: 22
+        groups:
+          - all_nodes
+
+    - name: Add server node
+      add_host:
+        hostname: server_node
+        ansible_ssh_host: "{{ server_node }}.{{ local_domain }}"
+        ansible_ssh_port: 22
+        groups:
+          - all_nodes
+
+- name: Setup nodes
+  hosts: all_nodes
+  roles:
+    - apt
+    - interface
+    - ssh
+    - docker
+
+- name: Setup runner node
+  hosts: client_node
+  roles:
+    - golang
+    - selenium
+    - unbound
+    - runner

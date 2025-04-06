@@ -1,0 +1,12 @@
+$TTL 3600
+$ORIGIN $BASE_DOMAIN.
+
+@                 IN  SOA    ns.$BASE_DOMAIN. mail.$BASE_DOMAIN. $DNS_SERIAL 3600 900 604800 180
+@                 IN  NS     ns.$BASE_DOMAIN.
+
+ns                IN  A      $DNS_BIND_ADDRESS
+
+$TTL 60
+server            IN  A      $DNS_A
+server            IN  AAAA   $DNS_AAAA
+

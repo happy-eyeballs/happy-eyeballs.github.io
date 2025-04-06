@@ -1,0 +1,31 @@
+server {
+    root /data/happy-eyeballs-test/www-root;
+
+    server_name {{ certbot_v6only_domain }} {{ certbot_v4only_domain }};
+
+    location /my-ip {
+        add_header 'Access-Control-Allow-Origin' '*';
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+        add_header 'Access-Control-Allow-Headers' 'Content-Type, Authorization';
+        add_header 'Access-Control-Allow-Credentials' 'true' always;
+        add_header 'Access-Control-Max-Age' 1728000;
+        add_header 'Content-Type' 'text/plain charset=UTF-8';
+        return 200 "$remote_addr\n";
+    }
+
+    listen [::]:11443 ssl ipv6only=on; # managed by Certbot
+    listen 11443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/{{ certbot_v6only_domain }}/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/{{ certbot_v6only_domain }}/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+
+server {
+    return 301 https://$host:10443$request_uri;
+
+    listen 11080 ;
+    listen [::]:11080 ;
+    server_name {{ certbot_v6only_domain }} {{ certbot_v4only_domain }};
+    return 404; # managed by Certbot
+}

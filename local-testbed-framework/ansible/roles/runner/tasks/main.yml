@@ -1,0 +1,62 @@
+- name: Create runner directory
+  file:
+    path: /opt/happyeyeballs
+    state: directory
+
+- name: Copy runner source code
+  synchronize:
+    src: "{{ playbook_dir }}/../runner"
+    dest: /opt/happyeyeballs
+    owner: false
+    group: false
+
+- name: Copy test cases
+  synchronize:
+    src: "{{ playbook_dir }}/../testcases"
+    dest: /opt/happyeyeballs
+    owner: false
+    group: false
+  tags:
+    - minupdate
+
+- name: Make tests executable
+  file:
+    path: /opt/happyeyeballs/testcases
+    state: directory
+    mode: "0744"
+    recurse: true
+  tags:
+    - minupdate
+
+- name: Copy clients
+  synchronize:
+    src: "{{ playbook_dir }}/../clients"
+    dest: /opt/happyeyeballs
+    owner: false
+    group: false
+  tags:
+    - minupdate
+
+- name: Make clients executable
+  file:
+    path: /opt/happyeyeballs/clients
+    state: directory
+    mode: "0744"
+    recurse: true
+  tags:
+    - minupdate
+
+- name: Copy runner config
+  template:
+    src: opt/happyeyeballs/runner-config.yml
+    dest: /opt/happyeyeballs/runner-config.yml
+  tags:
+    - minupdate
+
+- name: Copy run script
+  template:
+    src: opt/happyeyeballs/run.sh
+    dest: /opt/happyeyeballs/run.sh
+    mode: "0740"
+  tags:
+    - minupdate

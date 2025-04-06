@@ -1,0 +1,27 @@
+- name: Add client and server hosts
+  hosts: localhost
+  tasks:
+    - name: Add client node
+      add_host:
+        hostname: "{{ client_node }}.{{ local_domain }}"
+        ansible_ssh_host: "{{ client_node }}.{{ local_domain }}"
+        ansible_ssh_port: 22
+        groups:
+          - all_nodes
+      tags:
+        - always
+
+    - name: Add server node
+      add_host:
+        hostname: "{{ server_node }}.{{ local_domain }}"
+        ansible_ssh_host: "{{ server_node }}.{{ local_domain }}"
+        ansible_ssh_port: 22
+        groups:
+          - all_nodes
+      tags:
+        - always
+
+- name: Setup runner node
+  hosts: "{{ client_node }}.{{ local_domain }}"
+  roles:
+    - runner

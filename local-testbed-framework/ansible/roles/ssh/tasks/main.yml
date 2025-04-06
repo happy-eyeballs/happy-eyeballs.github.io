@@ -1,0 +1,17 @@
+- name: Add authorized key for root
+  ansible.posix.authorized_key:
+    user: root
+    key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN1JDyhZcisFyoUZqsoiVxxMmPi01R2Oe8Jd6tghENT/ root"
+    state: present
+
+- name: Copy private key to /root/.ssh folder
+  template:
+    src: root/.ssh/id_ed25519
+    dest: /root/.ssh/id_ed25519
+    mode: "0600"
+
+- name: Add AcceptEnv to sshd config
+  lineinfile:
+    line: "AcceptEnv LC_*"
+    dest: /etc/ssh/sshd_config
+  notify: restart sshd

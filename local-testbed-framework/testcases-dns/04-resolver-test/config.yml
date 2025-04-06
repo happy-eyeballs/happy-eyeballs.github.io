@@ -1,0 +1,38 @@
+stages:
+  - restartClient
+  - netemBefore
+  - separatorPacket
+  - request
+  - netemAfter
+
+targets:
+  - tag: _client
+    scripts:
+      - stage: request
+        script: request_wrapper.sh
+
+      - stage: restartClient
+        script: restart_wrapper.sh
+
+  - tag: tcpdump
+    scripts:
+      - stage: separatorPacket
+        script: separator_packet.sh
+
+  - tag: netem
+    scripts:
+      - stage: netemBefore
+        script: before.sh
+
+      - stage: netemAfter
+        always: true
+        script: after.sh
+
+repeat:
+  environmentVariableName: NETEM_DELAY
+  from: 0
+  to: 2000
+  step: 20
+
+evaluation:
+  script: evaluate.sh

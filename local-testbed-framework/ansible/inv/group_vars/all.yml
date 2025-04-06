@@ -1,0 +1,50 @@
+# The following variables have to be set per --extra-vars argument when running the playbook
+
+local_domain: ~
+
+server_node: ~
+server_interface: ~ # e.g. enp3s0
+
+client_node: ~
+client_interface: ~ # e.g. enp3s0
+
+os_name: ~ # e.g. debian
+os_version_name: ~ # e.g. bookworm
+
+iterations: 1
+
+#
+
+client:
+  ipv4:
+    - "10.0.1.1"
+  ipv6:
+    - "fc00::1:1"
+
+server:
+  ipv4:
+    - "10.0.2.1"
+    - "10.0.2.2"
+    - "10.0.2.3"
+    - "10.0.2.4"
+    - "10.0.2.5"
+    - "10.0.2.6"
+    - "10.0.2.7"
+    - "10.0.2.8"
+    - "10.0.2.9"
+    - "10.0.2.10"
+  ipv6:
+    - "fc00::2:1"
+    - "fc00::2:2"
+    - "fc00::2:3"
+    - "fc00::2:4"
+    - "fc00::2:5"
+    - "fc00::2:6"
+    - "fc00::2:7"
+    - "fc00::2:8"
+    - "fc00::2:9"
+    - "fc00::2:10"
+
+dns:
+  base_domain: "internal.example.com"
+  bind_address: "10.0.2.1"

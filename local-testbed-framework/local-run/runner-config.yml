@@ -1,0 +1,30 @@
+targets:
+  - name: Client
+    tags:
+      - _client
+      - tcpdump
+    ssh:
+      hostname: "10.0.1.1"
+      user: kirstein
+      port: 22
+      privkey: ./local-run/id_ed25519
+    environmentPrefix: LC_
+    environment:
+      - BASE_DOMAIN=happyeyeballs.local
+      - USE_DOCKER_TCPDUMP=false
+      - TCPDUMP_INTERFACE=en3
+      - TCPDUMP_SEPARATOR_PACKET_DESTINATION_ADDRESS=3000::2:1
+
+  - name: Server
+    tags:
+      - nginx
+      - netem
+      - dns
+      - _evaluation
+    environmentPrefix: LC_
+    environment:
+      - BASE_DOMAIN=happyeyeballs.local
+      - NETEM_INTERFACE=enp0s13f0u1u4
+      - DNS_BIND_ADDRESS=10.0.2.1
+      - DNS_A=10.0.2.1 10.0.2.2 10.0.2.3 10.0.2.4 10.0.2.5 10.0.2.6 10.0.2.7 10.0.2.8 10.0.2.9 10.0.2.10
+      - DNS_AAAA=3000::2:1 3000::2:2 3000::2:3 3000::2:4 3000::2:5 3000::2:6 3000::2:7 3000::2:8 3000::2:9 3000::2:10

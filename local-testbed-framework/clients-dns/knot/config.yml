@@ -1,0 +1,4 @@
+versions:
+  environmentVariableName: KNOT_VERSION
+  values:
+    - v6.0.9

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Eyeballs v1 Webtester</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
+
+    <script src="ip-v1.js" defer type="module"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+        th div
+        {
+            -ms-writing-mode: tb-rl;
+            -webkit-writing-mode: vertical-rl;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="text-center">Happy Eyeballs Webtester</h1>
+
+        <div id="heInfo" class="container text-center">
+            <div class="alert alert-info d-flex align-items-center" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle flex-shrink-0 me-2" viewBox="0 0 16 16">
+                    <path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.15.15 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.2.2 0 0 1-.054.06.1.1 0 0 1-.066.017H1.146a.1.1 0 0 1-.066-.017.2.2 0 0 1-.054-.06.18.18 0 0 1 .002-.183L7.884 2.073a.15.15 0 0 1 .054-.057m1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767z"/>
+                    <path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>
+                </svg>
+                <h5 >
+                    Please execute two test runs with at least 10 repetitions each where one has randomization enabled while the other one has them disabled.
+                </h5>
+            </div>
+        </div>
+
+        <div class="my-4">
+            <div class="text-center input-group">
+                    <label class="input-group-text" for="repetitions">Test Repetitions:</label>
+                    <select id="repetitions" class="form-select">
+                        <option value="1">1</option>
+                        <option value="10" selected>10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                    </select>
+                    <div class="input-group-text">
+                        <label class="form-check-label input-group-text" for="domainRandomization">Domain Randomization</label>
+                        <input class="form-check-input mx-2 my-0" type="checkbox" id="domainRandomization" value="" checked>
+                    </div>
+                    <div class="input-group-text">
+                        <label class="form-check-label input-group-text" for="autoTransmit">Auto Transmit Results</label>
+                        <input class="form-check-input mx-2 my-0" type="checkbox" id="autoTransmit" value="" checked>
+                    </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="userInfo" class="form-label">Device and user information for easier debugging (optional)</label>
+                <input type="text" class="form-control" id="userInfo" placeholder="OS, Device, Browser, YourName">
+            </div>
+
+            <div class="text-center input-group">
+                <button id="transmitResultsBtn" class="btn btn-success col-md-6" disabled>Transmit Results</button>
+                <span style="margin-top: 2rem; margin-bottom:2rem;"></span>
+                <button id="startTestBtn" class="btn btn-primary col-md-6">Start Test Runs</button>
+            </div>
+        </div>
+
+        <div id="testInfo" class="container text-center d-none">
+            <div class="alert alert-info d-flex align-items-center" role="alert">
+                <div class="col-1">
+                    <div class="spinner-border text-success" role="status">
+                        <span class="sr-only"></span>
+                    </div>
+                </div>
+                <div id="testInfoText" class="text-start col-11 h4">Test</div>
+            </div>
+        </div>
+
+
+        <!-- Table to Display Test Runs -->
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr id="testRunTableHeader">
+                        <th>Test Run #</th>
+                        <th>Started at</th>
+                    </tr>
+                    <tr id="testRunTableHeaderDelays">
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="testRunTableBody">
+                    <!-- Rows will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="alert alert-info d-flex align-items-center" role="alert">
+            <div id="heInfoText" class="text-start col-12">
+                <div class="accordion" id="accordionPanelsStayOpen">
+                    <div class="accordion-item">
+                        <h4 class="accordion-header" id="panelsStayOpen-durationinfo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                                </svg>
+                                <span style="margin-left: 0.5rem;">
+                                    Duration of a test run
+                                </span>
+                            </button>
+                        </h4>
+                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-durationinfo">
+                            <div class="accordion-body">
+                                A test run with 10 repetitions usually takes less than five minutes (10 x 5s sleep + measurements).
+                            Depending on your browser and device this might vary significantly.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="panelsStayOpen-datausage">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                                </svg>
+                                <span style="margin-left: 0.5rem;">
+                                    Data Usage
+                                </span>
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-datausage">
+                            <div class="accordion-body">
+                                One repetition uses about 15 kB of data. Therefore a test run with 10 repetitions uses about 150 kB.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="panelsStayOpen-collecteddata">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                                </svg>
+                                <span style="margin-left: 0.5rem;">
+                                    Collected Data
+                                </span>
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-collecteddata">
+                            <div class="accordion-body">
+                                Currently we collect the userAgent, vendor information, and both IPv4 and IPv6 address of the device.
+                                This is to better understand network specific effects (if any).
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <h2>Measurement Information</h2>
+
+        <p>
+            We setup a server with as many unique IPv4 and IPv6 addresses as measured delays.
+            Each delay has a corresponding IPv4 and IPv6 address bound to all subdomains of a delay-specific domain name.
+            By using tc netem we delay the traffic for the IPv6 address by the configured amount of ms.
+            This enables us to test how browsers deploy Happy Eyeballs.
+        </p>
+        <p>
+            We randomize domains in order to prevent caching effects on the browsers side.
+            The measurement without randomization shows us if the browser does any caching or uses performance measurements to select IP versions.
+        </p>
+    </div>
+
+    <template id="randomizeImg">
+        <span id="randomizeImgdiv">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shuffle" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.6 9.6 0 0 0 7.556 8a9.6 9.6 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.6 10.6 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.6 9.6 0 0 0 6.444 8a9.6 9.6 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5"/>
+                <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192m0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192"/>
+            </svg>
+          </span>
+    </template>
+    <template id="uploadedImg">
+        <span id="uploadedImgdiv">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cloud-upload-fill" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 0a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 4.095 0 5.555 0 7.318 0 9.366 1.708 11 3.781 11H7.5V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11h4.188C14.502 11 16 9.57 16 7.773c0-1.636-1.242-2.969-2.834-3.194C12.923 1.999 10.69 0 8 0m-.5 14.5V11h1v3.5a.5.5 0 0 1-1 0"/>
+            </svg>
+        </span>
+    </template>
+    <template id="noRandomizeImg">
+        <span id="noRandomizeImgdiv">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sort-down-alt" viewBox="0 0 16 16">
+                <path d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5"/>
+            </svg>
+        </span>
+    </template>
+</body>
+</html>

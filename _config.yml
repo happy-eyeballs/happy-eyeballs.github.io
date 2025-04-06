@@ -1,0 +1,15 @@
+remote_theme: pages-themes/slate@v0.2.0
+title: "Lazy Eye Inspection: Capturing the State of Happy Eyeballs Implementations"
+author: "Anonymous Authors"
+plugins:
+  - jekyll-remote-theme
+  - jekyll-sitemap
+  - jekyll-titles-from-headings
+titles_from_headings:
+  enabled:     true
+  strip_title: true
+  collections: true
+exclude:
+  - online-testing/
+  - local-testbed-framework/
+description: "Source code for local framework and online testing tool"
